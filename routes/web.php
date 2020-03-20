@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/','WelcomeController@index')->name('home');
+Route::get('/admin','AdminController@index')->name('admin');
 
 Auth::routes();
 
@@ -67,3 +68,10 @@ Route::post('/admin/savePoste','PosteController@store')->name('savePoste');
 Route::get('/admin/editPoste/{id}','PosteController@edit')->name('editPoste');
 Route::post('/admin/updatePoste/{id}','PosteController@update')->name('updatePoste');
 Route::get('/admin/deletePoste/{id}','PosteController@destroy')->name('deletePoste');
+
+
+Route::get('/admin/profile','ProfileController@index')->name('profile');
+Route::get('/admin/editProfile','ProfileController@edit')->name('editProfile');
+Route::post('/admin/updateProfile','ProfileController@update')->name('updateProfile');
+Route::get('/admin/deleteProfile','ProfileController@destroy')->name('deleteProfile');
+

@@ -37,6 +37,36 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        @if (Auth::check())
+                            @if (Auth::user()->id_role==1)
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin') }}">Admin</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('header') }}">Header</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('about') }}">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('role') }}">Role</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('poste') }}">Poste</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('spec') }}">Spec</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('special') }}">Special</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('categorie') }}">Categorie</a>
+                            </li>
+                            @endif
+                            
+                        @endif
 
                     </ul>
 
@@ -53,7 +83,9 @@
                         </li>
                         @endif
                         @else
-                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('profile') }}">Profile</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

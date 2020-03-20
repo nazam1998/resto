@@ -62,22 +62,8 @@
 	                                            </div>
 											</li>
 											@if (Auth::user()->id_role==1)
-	                                        <li class="menuItem dropdown">
-	                                            <a id="navbarDropdown2" class="nav-link dropdown-toggle" href="#"
-	                                                role="button" data-toggle="dropdown" aria-haspopup="true"
-	                                                aria-expanded="false" v-pre>
-	                                                Admin <span class="caret"></span>
-	                                            </a>
-
-	                                            <div class="dropdown-menu dropdown-menu-down"
-	                                                aria-labelledby="navbarDropdown">
-	                                                <a class="dropdown-item" href="{{ route('header') }}">
-	                                                    Header
-	                                                </a>
-	                                                <a class="dropdown-item" href="{{ route('about') }}">
-	                                                    About
-	                                                </a>
-	                                            </div>
+	                                        <li class="menuItem">
+											<a id="admin" class="nav-link" href="{{route('admin')}}">Admin</a>
 											</li>
 											@endif
 	                                        @endif
