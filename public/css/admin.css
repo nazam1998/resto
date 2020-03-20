@@ -16819,6 +16819,14 @@ readers do not read off random characters that represent icons */
   font-weight: 900;
 }
 
+.profile-photo {
+  width: 400px;
+}
+
+.profile-photo-nav {
+  width: 80px;
+}
+
 table,
 td {
   border: 1px solid black;

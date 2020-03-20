@@ -17,7 +17,8 @@
 			<div class="col-md-4">
 				<div class="restmenuwrap">
 				<h3 class="maincat notopmarg text-center">{{$cat->categorie}}</h3>
-					@foreach ($specials as $item)
+				<?php  $randoms=$specials->where('id_cat',$cat->id)->random(3)?>
+					@foreach ($randoms as $item)
 						
 					@if ($item->id_cat==$cat->id)
 						

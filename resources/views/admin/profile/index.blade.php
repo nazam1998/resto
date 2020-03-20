@@ -3,10 +3,10 @@
 @section('content')
     <div class="container">
     <h1 class="text-success text-center my-5">Hello {{$user->nom.' '.$user->prenom}}</h1>
+    <p>Photo de Profil : <img src="{{asset('storage/'.$user->photo)}}" class="profile-photo" alt=""></p>
     <p>Nom : {{$user->nom}}</p>
     <p>Prenom : {{$user->prenom}}</p>
     <p>Email : {{$user->email}}</p>
-    <p>Photo de Profil : <img src="{{'storage/'.$user->photo}}" alt=""></p>
     <p>Role : {{$role->role}}</p>
     @if (!is_null($poste))
     <p>Poste : {{$poste->poste}}</p>

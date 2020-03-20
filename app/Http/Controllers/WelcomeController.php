@@ -15,7 +15,7 @@ class WelcomeController extends Controller
         $header=Header::all();
         $about=About::all();
         $spec=Spec::all();
-        $categories=Categorie::all();
+        $categories=Categorie::inRandomOrder()->take(3)->get();
         $specials=Special::all();
         return view('welcome',compact('header','about','spec','categories','specials'));
     }
