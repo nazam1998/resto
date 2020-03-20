@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Header;
 use App\About;
 use App\Spec;
+use App\Special;
+use App\Categorie;
 use Illuminate\Support\Facades\Auth;
 class WelcomeController extends Controller
 {
@@ -13,6 +15,8 @@ class WelcomeController extends Controller
         $header=Header::all();
         $about=About::all();
         $spec=Spec::all();
-        return view('welcome',compact('header','about','spec'));
+        $categories=Categorie::all();
+        $specials=Special::all();
+        return view('welcome',compact('header','about','spec','categories','specials'));
     }
 }

@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Special;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
+use App\Categorie;
+
 class SpecialController extends Controller
 {
     /**
@@ -14,7 +18,9 @@ class SpecialController extends Controller
      */
     public function index()
     {
-        //
+        $categories=Categorie::all();
+        $specials=Special::all();
+        return view('admin.special.index',compact('specials','categories'));
     }
 
     /**
@@ -24,7 +30,8 @@ class SpecialController extends Controller
      */
     public function create()
     {
-        //
+        $categories=Categorie::all();
+        return view('admin.special.add',compact('categories'));
     }
 
     /**
@@ -35,7 +42,16 @@ class SpecialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $special=new Special();
+        $filename=Storage::put('public',$request->file('logo'));
+        $file=basename($filename);
+        $special->titre=$request->titre;
+        $special->logo=$file;
+        $special->description=$request->description;
+        $special->id_cat=$request->id_cat;
+        $special->save();
+        return redirect()->route('special');
+        
     }
 
     /**
@@ -44,7 +60,7 @@ class SpecialController extends Controller
      * @param  \App\Special  $special
      * @return \Illuminate\Http\Response
      */
-    public function show(Special $special)
+    public function show($id)
     {
         //
     }
@@ -55,9 +71,11 @@ class SpecialController extends Controller
      * @param  \App\Special  $special
      * @return \Illuminate\Http\Response
      */
-    public function edit(Special $special)
+    public function edit($id)
     {
-        //
+        $special=Special::find($id);
+        $categories=Categorie::all();
+        return view('admin.special.edit',compact('categories','special'));
     }
 
     /**
@@ -67,9 +85,20 @@ class SpecialController extends Controller
      * @param  \App\Special  $special
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Special $special)
+    public function update(Request $request, $id)
     {
-        //
+        $special=Special::find($id);
+        if(Storage::exists(public_path($special->image))){
+            unlink($special->image);
+        }
+        $filename=Storage::put('public',$request->file('logo'));
+        $file=basename($filename);
+        $special->titre=$request->titre;
+        $special->logo=$file;
+        $special->description=$request->description;
+        $special->id_cat=$request->id_cat;
+        $special->save();
+        return redirect()->route('special');
     }
 
     /**
@@ -78,8 +107,13 @@ class SpecialController extends Controller
      * @param  \App\Special  $special
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Special $special)
+    public function destroy($id)
     {
-        //
+        $special=Special::find($id);
+        if(Storage::exists(public_path($special->image))){
+            unlink($special->image);
+        }
+        $special->delete();
+        return redirect()->route('special');
     }
 }

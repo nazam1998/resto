@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Categorie;
 use Illuminate\Http\Request;
+use App\Role;
 use Illuminate\Support\Facades\Auth;
-class CategorieController extends Controller
+
+class RoleController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $categories=Categorie::all();
-        return view('admin.categorie.index',compact('categories'));
+        $roles=Role::all();
+        return view('admin.role.index',compact('roles'));
     }
 
     /**
@@ -26,10 +27,10 @@ class CategorieController extends Controller
     public function create()
     {
         
-        if(count(Categorie::all())==3||!Auth::check()&&!Auth::user()->id_role==1){
+        if(!Auth::check()&&!Auth::user()->id_role==1){
             return redirect()->back();
         }
-        return view('admin.categorie.add');
+        return view('admin.role.add');
     }
 
     /**
@@ -41,19 +42,19 @@ class CategorieController extends Controller
     public function store(Request $request)
     {
 
-        if(count(Categorie::all())==3||!Auth::check()&&!Auth::user()->id_role==1){
+        if(count(Role::all())==3||!Auth::check()&&!Auth::user()->id_role==1){
             return redirect()->back();
         }
-        $categorie=new Categorie();
-        $categorie->categorie=$request->categorie;
-        $categorie->save();
-        return redirect()->route('categorie');
+        $role=new Role();
+        $role->role=$request->role;
+        $role->save();
+        return redirect()->route('role');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Categorie  $categorie
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -64,14 +65,14 @@ class CategorieController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Categorie  $categorie
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        if(Auth::check()&&Auth::user()->id_role==1){
-            $categorie=Categorie::find($id);
-        return view('admin.categorie.edit');
+        if(Auth::check()&&Auth::user()->id_role==1&&$id>=4){
+            $role=Role::find($id);
+        return view('admin.role.edit');
         }else{
             return redirect()->back();
         }
@@ -82,17 +83,17 @@ class CategorieController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Categorie  $categorie
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        if(Auth::check()&&Auth::user()->id_role==1){
+        if(Auth::check()&&Auth::user()->id_role==1&&$id>=4){
 
-        $categorie=Categorie::find($id);
-        $categorie->categorie=$request->categorie;
-        $categorie->save();
-        return redirect()->route('categorie');
+        $role=Role::find($id);
+        $role->role=$request->role;
+        $role->save();
+        return redirect()->route('role');
         }else{
             return redirect()->back();
         }
@@ -102,16 +103,16 @@ class CategorieController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Categorie  $categorie
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        if(Auth::check()&&Auth::user()->id_role==1){
+        if(Auth::check()&&Auth::user()->id_role==1&&$id>=4){
             
-            $categorie=Categorie::find($id);
-            $categorie->delete();
-            return redirect()->route('categorie');
+            $role=Role::find($id);
+            $role->delete();
+            return redirect()->route('role');
         }else{
             return redirect()->back();
         }

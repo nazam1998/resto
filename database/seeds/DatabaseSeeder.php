@@ -13,6 +13,9 @@ class DatabaseSeeder extends Seeder
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0'); 
         $this->call(RoleSeeder::class);
+        $this->call(CategorieTableSeeder::class);
+        $this->call(SpecialTableSeeder::class);
+        $this->call(PosteTableSeeder::class);
         $this->call(UserTableSeeder::class);
     }
 }

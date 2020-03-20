@@ -7,14 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class PosteController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $postes=Poste::all();
+        return view('admin.poste.index',compact('postes'));
     }
 
     /**
@@ -24,7 +25,11 @@ class PosteController extends Controller
      */
     public function create()
     {
-        //
+        
+        if(!Auth::check()&&!Auth::user()->id_poste==1){
+            return redirect()->back();
+        }
+        return view('admin.poste.add');
     }
 
     /**
@@ -35,7 +40,14 @@ class PosteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        if(count(Poste::all())==3||!Auth::check()&&!Auth::user()->id_poste==1){
+            return redirect()->back();
+        }
+        $poste=new Poste();
+        $poste->poste=$request->poste;
+        $poste->save();
+        return redirect()->route('poste');
     }
 
     /**
@@ -44,7 +56,7 @@ class PosteController extends Controller
      * @param  \App\Poste  $poste
      * @return \Illuminate\Http\Response
      */
-    public function show(Poste $poste)
+    public function show($id)
     {
         //
     }
@@ -55,9 +67,15 @@ class PosteController extends Controller
      * @param  \App\Poste  $poste
      * @return \Illuminate\Http\Response
      */
-    public function edit(Poste $poste)
+    public function edit($id)
     {
-        //
+        if(Auth::check()&&Auth::user()->id_poste==1&&$id>=4){
+            $poste=Poste::find($id);
+        return view('admin.poste.edit');
+        }else{
+            return redirect()->back();
+        }
+        
     }
 
     /**
@@ -67,9 +85,18 @@ class PosteController extends Controller
      * @param  \App\Poste  $poste
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Poste $poste)
+    public function update(Request $request, $id)
     {
-        //
+        if(Auth::check()&&Auth::user()->id_poste==1&&$id>=4){
+
+        $poste=Poste::find($id);
+        $poste->poste=$request->poste;
+        $poste->save();
+        return redirect()->route('poste');
+        }else{
+            return redirect()->back();
+        }
+        
     }
 
     /**
@@ -78,8 +105,15 @@ class PosteController extends Controller
      * @param  \App\Poste  $poste
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Poste $poste)
+    public function destroy($id)
     {
-        //
+        if(Auth::check()&&Auth::user()->id_poste==1&&$id>=4){
+            
+            $poste=Poste::find($id);
+            $poste->delete();
+            return redirect()->route('poste');
+        }else{
+            return redirect()->back();
+        }
     }
 }

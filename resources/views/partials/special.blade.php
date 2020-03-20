@@ -11,93 +11,30 @@
 		</div>
 		@endforeach
 		<div class="row">
+			@foreach ($categories as $cat)
+				
+			
 			<div class="col-md-4">
 				<div class="restmenuwrap">
-					<h3 class="maincat notopmarg text-center">APPETIZERS</h3>
+				<h3 class="maincat notopmarg text-center">{{$cat->categorie}}</h3>
+					@foreach ($specials as $item)
+						
+					@if ($item->id_cat==$cat->id)
+						
+					
 					<div class="restitem clearfix">
-						<div class="rm-thumb" style="background-image: url(http://wowthemes.net/demo/leroy/img/dummies/1.jpg)">
+						<div class="rm-thumb" style="background-image: url({{asset('storage/'.$item->logo)}})">
 						</div>
-						<h5>Sweet, Sticky and Spicy Chicken</h5>
+					<h5>{{$item->titre}}</h5>
 						<p>
-							Pepperoni, mozzarella cheese and Italian seasonings are rolled together, baked to delicious perfection, then cut into bite-sized delights. Your guests will beg for the recipe!"
+							{{$item->description}}
 						</p>
 					</div>
-					<div class="restitem clearfix">
-						<div class="rm-thumb" style="background-image: url(http://wowthemes.net/demo/leroy/img/dummies/2.jpg)">
-						</div>
-						<h5>Luxur Oyster</h5>
-						<p>
-							Pepperoni, mozzarella cheese and Italian seasonings are rolled together, baked to delicious perfection, then cut into bite-sized delights. Your guests will beg for the recipe!"
-						</p>
-					</div>
-					<div class="restitem clearfix">
-						<div class="rm-thumb" style="background-image: url(http://wowthemes.net/demo/leroy/img/dummies/3.jpg)">
-						</div>
-						<h5>Sweet, Sticky and Spicy Chicken</h5>
-						<p>
-							Pepperoni, mozzarella cheese and Italian seasonings are rolled together, baked to delicious perfection, then cut into bite-sized delights. Your guests will beg for the recipe!"
-						</p>
-					</div>
+					@endif
+					@endforeach
 				</div>
 			</div>
-			<div class="col-md-4">
-				<div class="restmenuwrap">
-					<h3 class="maincat notopmarg text-center">MAIN</h3>
-					<div class="restitem clearfix">
-						<div class="rm-thumb" style="background-image: url(http://wowthemes.net/demo/leroy/img/dummies/4.jpg)">
-						</div>
-						<h5>Sweet, Sticky and Spicy Chicken</h5>
-						<p>
-							Pepperoni, mozzarella cheese and Italian seasonings are rolled together, baked to delicious perfection, then cut into bite-sized delights. Your guests will beg for the recipe!"
-						</p>
-					</div>
-					<div class="restitem clearfix">
-						<div class="rm-thumb" style="background-image: url(http://wowthemes.net/demo/leroy/img/dummies/5.jpg)">
-						</div>
-						<h5>Luxur Oyster</h5>
-						<p>
-							Pepperoni, mozzarella cheese and Italian seasonings are rolled together, baked to delicious perfection, then cut into bite-sized delights. Your guests will beg for the recipe!"
-						</p>
-					</div>
-					<div class="restitem clearfix">
-						<div class="rm-thumb" style="background-image: url(http://wowthemes.net/demo/leroy/img/dummies/6.jpg)">
-						</div>
-						<h5>Sweet, Sticky and Spicy Chicken</h5>
-						<p>
-							Pepperoni, mozzarella cheese and Italian seasonings are rolled together, baked to delicious perfection, then cut into bite-sized delights. Your guests will beg for the recipe!"
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="restmenuwrap">
-					<h3 class="maincat notopmarg text-center">DESSERTS</h3>
-					<div class="restitem clearfix">
-						<div class="rm-thumb" style="background-image: url(http://wowthemes.net/demo/leroy/img/dummies/7.jpg)">
-						</div>
-						<h5>Sweet, Sticky and Spicy Chicken</h5>
-						<p>
-							Pepperoni, mozzarella cheese and Italian seasonings are rolled together, baked to delicious perfection, then cut into bite-sized delights. Your guests will beg for the recipe!"
-						</p>
-					</div>
-					<div class="restitem clearfix">
-						<div class="rm-thumb" style="background-image: url(http://wowthemes.net/demo/leroy/img/dummies/8.jpg)">
-						</div>
-						<h5>Luxur Oyster</h5>
-						<p>
-							Pepperoni, mozzarella cheese and Italian seasonings are rolled together, baked to delicious perfection, then cut into bite-sized delights. Your guests will beg for the recipe!"
-						</p>
-					</div>
-					<div class="restitem clearfix">
-						<div class="rm-thumb" style="background-image: url(http://wowthemes.net/demo/leroy/img/dummies/9.jpg)">
-						</div>
-						<h5>Sweet, Sticky and Spicy Chicken</h5>
-						<p>
-							Pepperoni, mozzarella cheese and Italian seasonings are rolled together, baked to delicious perfection, then cut into bite-sized delights. Your guests will beg for the recipe!"
-						</p>
-					</div>
-				</div>
-			</div>
+			@endforeach
 		</div>
 	</div>
 	</section>

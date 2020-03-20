@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('photo');
+            $table->string('fichier')->nullable();
+            $table->string('photoTeam')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -28,10 +30,6 @@ class CreateUsersTable extends Migration
 
             $table->unsignedBigInteger('id_poste')->nullable();
             $table->foreign('id_poste')->on('postes')->references('id')->onDelete('cascade')->onUpdate('cascade');
-            
-            
-            $table->unsignedBigInteger('id_comment')->nullable();
-            $table->foreign('id_comment')->on('comments')->references('id')->onDelete('cascade')->onUpdate('cascade');
             
             
             $table->unsignedBigInteger('id_testimonial')->nullable();
