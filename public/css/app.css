@@ -2758,8 +2758,8 @@ img {max-width: 100%;}
 }
 .menu {
 	 margin-top:0px;
-	 position:absolute;
 	 z-index:999;
+	 text-align: center;
 	 margin-top:20px;
 	 left:0px;
 	 right:0px;

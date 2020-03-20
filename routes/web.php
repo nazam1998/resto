@@ -30,3 +30,11 @@ Route::post('/admin/saveAbout','AboutController@store')->name('saveAbout');
 Route::get('/admin/editAbout/{id}','AboutController@edit')->name('editAbout');
 Route::post('/admin/updateAbout/{id}','AboutController@update')->name('updateAbout');
 Route::get('/admin/deleteAbout/{id}','AboutController@destroy')->name('deleteAbout');
+
+
+Route::get('/admin/spec','SpecController@index')->name('spec');
+Route::get('/admin/addSpec','SpecController@create')->name('addSpec');
+Route::post('/admin/saveSpec','SpecController@store')->name('saveSpec');
+Route::get('/admin/editSpec/{id}','SpecController@edit')->name('editSpec');
+Route::post('/admin/updateSpec/{id}','SpecController@update')->name('updateSpec');
+Route::get('/admin/deleteSpec/{id}','SpecController@destroy')->name('deleteSpec');

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Header;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Auth;
 class HeaderController extends Controller
 {
     /**
@@ -48,7 +48,7 @@ class HeaderController extends Controller
         $request->validate([
             'titre'=>'required',
             'banniere'=>'required|image',
-            'icone'=>'required|string'
+            'icone'=>'required'
         ]);
         $filename=Storage::put('public',$request->file('banniere'));
         $file=basename($filename);
@@ -97,7 +97,7 @@ class HeaderController extends Controller
         $request->validate([
             'titre'=>'required',
             'banniere'=>'required|image',
-            'icone'=>'required|string'
+            'icone'=>'required'
         ]);
         $header=Header::find($id);
 

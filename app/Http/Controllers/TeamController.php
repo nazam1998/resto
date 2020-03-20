@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Team;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class TeamController extends Controller
 {
     /**

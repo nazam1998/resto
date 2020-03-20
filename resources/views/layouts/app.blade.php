@@ -52,7 +52,6 @@
     <script src="{{asset('js/imgloaded.js')}}"></script>
     <script src="{{asset('js/classie.js')}}"></script>
     <script src="{{asset('js/colorfinder.js')}}"></script>
-    <script src="{{asset('js/gridscroll.js')}}"></script>
     <script src="{{asset('js/contact.js')}}"></script>
     <script src="{{asset('js/common.js')}}"></script> 
      <script type="text/javascript">

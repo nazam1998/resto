@@ -1,12 +1,15 @@
 <!--specialties-->
 <section class="specialties" id="specialties">
 	<div class="container">
+		@foreach ($spec as $item)
+			
 		<div class="heading text-center">
 			<img class="dividerline" src="img/sep.png" alt="">
-			<h2>Our Specialties</h2>
+			<h2>{{$item->titre}}</h2>
 			<img class="dividerline" src="img/sep.png" alt="">
-			<h3>Have you ever felt worried that your party will not raise up to your guest expectations? In design, vertical rhythm is the structure that guides a reader's eye through the content. Good vertical rhythm makes a layout more balanced and beautiful and its content more readable. The time signature in sheet music visually depicts a song's rhythm, while for us, the lines of the baseline grid depict the rhythm of our content and give us guidelines.</h3>
+			<h3>{{$item->description}}</h3>
 		</div>
+		@endforeach
 		<div class="row">
 			<div class="col-md-4">
 				<div class="restmenuwrap">

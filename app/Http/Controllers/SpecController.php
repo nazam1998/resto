@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Spec;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class SpecController extends Controller
 {
     /**
@@ -14,7 +14,8 @@ class SpecController extends Controller
      */
     public function index()
     {
-        //
+        $specs=Spec::all();
+        return view('admin.spec.index',compact('specs'));
     }
 
     /**
@@ -24,7 +25,11 @@ class SpecController extends Controller
      */
     public function create()
     {
-        //
+        
+        if(count(Spec::all())!=0||!Auth::check()&&!Auth::user()->id_role==1){
+            return redirect()->back();
+        }
+        return view('admin.spec.add');
     }
 
     /**
@@ -35,7 +40,15 @@ class SpecController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        if(count(Spec::all())!=0||!Auth::check()&&!Auth::user()->id_role==1){
+            return redirect()->back();
+        }
+        $spec=new Spec();
+        $spec->titre=$request->titre;
+        $spec->description=$request->description;
+        $spec->save();
+        return redirect()->route('spec');
     }
 
     /**
@@ -44,7 +57,7 @@ class SpecController extends Controller
      * @param  \App\Spec  $spec
      * @return \Illuminate\Http\Response
      */
-    public function show(Spec $spec)
+    public function show($id)
     {
         //
     }
@@ -55,9 +68,15 @@ class SpecController extends Controller
      * @param  \App\Spec  $spec
      * @return \Illuminate\Http\Response
      */
-    public function edit(Spec $spec)
+    public function edit($id)
     {
-        //
+        if(Auth::check()&&Auth::user()->id_role==1){
+            $spec=Spec::find($id);
+        return view('admin.spec.edit');
+        }else{
+            return redirect()->back();
+        }
+        
     }
 
     /**
@@ -67,9 +86,19 @@ class SpecController extends Controller
      * @param  \App\Spec  $spec
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Spec $spec)
+    public function update(Request $request, $id)
     {
-        //
+        if(Auth::check()&&Auth::user()->id_role==1){
+
+        $spec=Spec::find($id);
+        $spec->titre=$request->titre;
+        $spec->description=$request->description;
+        $spec->save();
+        return redirect()->route('spec');
+        }else{
+            return redirect()->back();
+        }
+        
     }
 
     /**
@@ -78,8 +107,15 @@ class SpecController extends Controller
      * @param  \App\Spec  $spec
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Spec $spec)
+    public function destroy($id)
     {
-        //
+        if(Auth::check()&&Auth::user()->id_role==1){
+            
+            $spec=Spec::find($id);
+            $spec->delete();
+            return redirect()->route('spec');
+        }else{
+            return redirect()->back();
+        }
     }
 }

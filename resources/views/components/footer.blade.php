@@ -5,11 +5,11 @@
 	</p>
 	<div class="container">
 		<ul>
-			<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-			<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-			<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-			<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-			<li><a href="#"><i class="fa fa-flickr"></i></a></li>
+			<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+			<li><a href="#"><i class="fab fa-facebook"></i></a></li>
+			<li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+			<li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+			<li><a href="#"><i class="fab fa-flickr"></i></a></li>
 		</ul>
 		<p>
 			&copy; Copyright Your Website<br>

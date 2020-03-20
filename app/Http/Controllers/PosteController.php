@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Poste;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class PosteController extends Controller
 {
     /**

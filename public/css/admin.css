@@ -16829,6 +16829,10 @@ table {
   box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
+table img {
+  width: 200px;
+}
+
 th,
 td {
   padding: 20px;

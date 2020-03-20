@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\About;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class AboutController extends Controller
 {
     /**
@@ -14,8 +14,8 @@ class AboutController extends Controller
      */
     public function index()
     {
-        $about=About::all();
-        return view('admin.about.index',compact('about'));
+        $abouts=About::all();
+        return view('admin.about.index',compact('abouts'));
     }
 
     /**
@@ -25,7 +25,8 @@ class AboutController extends Controller
      */
     public function create()
     {
-        if(count(About::all())!=0){
+        
+        if(count(About::all())!=0||!Auth::check()&&!Auth::user()->id_role==1){
             return redirect()->back();
         }
         return view('admin.about.add');
@@ -39,7 +40,8 @@ class AboutController extends Controller
      */
     public function store(Request $request)
     {
-        if(count(About::all())!=0){
+
+        if(count(About::all())!=0||!Auth::check()&&!Auth::user()->id_role==1){
             return redirect()->back();
         }
         $about=new About();
@@ -55,7 +57,7 @@ class AboutController extends Controller
      * @param  \App\About  $about
      * @return \Illuminate\Http\Response
      */
-    public function show(About $about)
+    public function show($id)
     {
         //
     }
@@ -68,8 +70,13 @@ class AboutController extends Controller
      */
     public function edit($id)
     {
-        $about=About::find($id);
+        if(Auth::check()&&Auth::user()->id_role==1){
+            $about=About::find($id);
         return view('admin.about.edit');
+        }else{
+            return redirect()->back();
+        }
+        
     }
 
     /**
@@ -79,8 +86,18 @@ class AboutController extends Controller
      * @param  \App\About  $about
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, About $about)
+    public function update(Request $request, $id)
     {
+        if(Auth::check()&&Auth::user()->id_role==1){
+
+        $about=About::find($id);
+        $about->titre=$request->titre;
+        $about->description=$request->description;
+        $about->save();
+        return redirect()->route('about');
+        }else{
+            return redirect()->back();
+        }
         
     }
 
@@ -90,8 +107,15 @@ class AboutController extends Controller
      * @param  \App\About  $about
      * @return \Illuminate\Http\Response
      */
-    public function destroy(About $about)
+    public function destroy($id)
     {
-        //
+        if(Auth::check()&&Auth::user()->id_role==1){
+            
+            $about=About::find($id);
+            $about->delete();
+            return redirect()->route('about');
+        }else{
+            return redirect()->back();
+        }
     }
 }

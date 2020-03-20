@@ -1,19 +1,18 @@
 	<!--header-->
 	<header>
-		@foreach ($header as $item)
+	    @foreach ($header as $item)
 	    <div class="banner row" id="banner">
-	        <div class="parallax text-center"
-	            style="background-image: url({{'storage/'.$item->banniere}});">
+	        <div class="parallax text-center" style="background-image: url({{'storage/'.$item->banniere}});">
 	            <div class="parallax-pattern-overlay">
 	                <div class="container text-center" style="height:600px;padding-top:170px;">
-	                    <a href="#"><i id="site-title" class="{{'wow fadeInDown '.$item->icone.' fa-5x'}}" wow-data-delay="0.0s"
-	                            wow-data-duration="0.9s"></i></a>
-						<h2 class="intro wow zoomIn" wow-data-delay="0.4s" wow-data-duration="0.9s">{{$item->titre}}</h2>
+	                    <a href="#"><i id="site-title" class="{{'wow fadeInDown '.$item->icone.' fa-5x'}}"
+	                            wow-data-delay="0.0s" wow-data-duration="0.9s"></i></a>
+	                    <h2 class="intro wow zoomIn" wow-data-delay="0.4s" wow-data-duration="0.9s">{{$item->titre}}</h2>
 	                </div>
 	            </div>
 	        </div>
-		</div>
-		@endforeach
+	    </div>
+	    @endforeach
 	    <div class="menu">
 	        <div class="navbar-wrapper">
 	            <div class="container">
@@ -37,14 +36,51 @@
 	                                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
 	                                        </li>
 	                                        @endif
-											@endguest
-											@if (Auth::check())
-												@if (Auth::user()->id_role==1)
-													<li>
-														<a class="nav-link" href="{{ route('header') }}">Header</a>
-													</li>
-												@endif
+	                                        @endguest
+
+	                                        @if (Auth::check())
+	                                        
+	                                        
+	                                        <li class="dropdown">
+	                                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#"
+	                                                role="button" data-toggle="dropdown" aria-haspopup="true"
+	                                                aria-expanded="false" v-pre>
+	                                                {{ Auth::user()->prenom }} <span class="caret"></span>
+	                                            </a>
+
+	                                            <div class="dropdown-menu dropdown-menu-right"
+	                                                aria-labelledby="navbarDropdown">
+	                                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+																			 document.getElementById('logout-form').submit();">
+	                                                    {{ __('Logout') }}
+	                                                </a>
+
+	                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+	                                                    style="display: none;">
+	                                                    @csrf
+	                                                </form>
+	                                            </div>
+											</li>
+											@if (Auth::user()->id_role==1)
+	                                        <li class="menuItem dropdown">
+	                                            <a id="navbarDropdown2" class="nav-link dropdown-toggle" href="#"
+	                                                role="button" data-toggle="dropdown" aria-haspopup="true"
+	                                                aria-expanded="false" v-pre>
+	                                                Admin <span class="caret"></span>
+	                                            </a>
+
+	                                            <div class="dropdown-menu dropdown-menu-down"
+	                                                aria-labelledby="navbarDropdown">
+	                                                <a class="dropdown-item" href="{{ route('header') }}">
+	                                                    Header
+	                                                </a>
+	                                                <a class="dropdown-item" href="{{ route('about') }}">
+	                                                    About
+	                                                </a>
+	                                            </div>
+											</li>
 											@endif
+	                                        @endif
 	                                    </ul>
 	                                </div>
 	                            </div>
