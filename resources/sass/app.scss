@@ -1,0 +1,44 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import "./bootstrap.css";
+@import "./font-awesome.css";
+@import "./animate.css";
+@import "./theme.css";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/regular.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+
+.menu{
+    color: #343a40 !important;
+}
+
+table,
+td,
+th {
+    border: 1px solid #333;
+    padding: 13px;
+}
+
+table {
+    margin-top: 50px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 15px 15px 15px 15px rgba($color: #000000, $alpha: 0.5); 
+
+    img {
+        height: 100px;
+        width: 100px;
+    }
+}
+
+thead,
+tfoot {
+    background-color: #343a40 ;
+    color: #fff;
+}
