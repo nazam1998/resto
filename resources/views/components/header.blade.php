@@ -65,7 +65,7 @@
 											</li>
 											@if (Auth::user()->id_role==1)
 	                                        <li class="menuItem">
-											<a id="admin" class="nav-link" href="{{route('admin')}}">Admin</a>
+											<a id="admin" class="nav-link" href="{{route('user')}}">Admin</a>
 											</li>
 											@endif
 	                                        @endif

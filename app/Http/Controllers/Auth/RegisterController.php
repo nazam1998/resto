@@ -72,7 +72,7 @@ class RegisterController extends Controller
         if(count(User::all())==0){
             $role=1;
         }else{
-            $role=3;
+            $role=2;
         }
         return User::create([
             'nom' => $data['nom'],

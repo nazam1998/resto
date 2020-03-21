@@ -41,7 +41,7 @@
                         @if (Auth::user()->id_role==1)
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin') }}">Admin</a>
+                            <a class="nav-link" href="{{ route('user') }}">Users</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('header') }}">Header</a>

@@ -6,6 +6,7 @@ use App\Role;
 use App\Testimonial;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Http\Request;
 
@@ -41,11 +42,17 @@ class ProfileController extends Controller
         }
         $filename=Storage::put('public',$request->file('photo'));
         $file=basename($filename);
-
+        $testimonials=Testimonial::all();
         $user->nom=$request->nom;
         $user->prenom=$request->prenom;
         $user->photo=$file;
-        $user->password=$request->password;
+        $user->password=Hash::make($request->password);
+        if($user->id_role>3){
+            $user->fichier=$request->fichier;
+            $user->photoTeam=$request->photoTeam;
+        }elseif($user->id_role==3){
+            $user->id_testimonial=$request->testimonial;
+        }
         $user->save();
         return redirect()->route('profile');
 

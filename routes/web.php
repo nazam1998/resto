@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/','WelcomeController@index')->name('home');
-Route::get('/admin','AdminController@index')->name('admin');
 
 Auth::routes();
 
@@ -62,10 +61,19 @@ Route::get('/admin/editRole/{id}','RoleController@edit')->name('editRole');
 Route::post('/admin/updateRole/{id}','RoleController@update')->name('updateRole');
 Route::get('/admin/deleteRole/{id}','RoleController@destroy')->name('deleteRole');
 
-
-
 Route::get('/admin/profile','ProfileController@index')->name('profile');
 Route::get('/admin/editProfile','ProfileController@edit')->name('editProfile');
 Route::post('/admin/updateProfile','ProfileController@update')->name('updateProfile');
 Route::get('/admin/deleteProfile','ProfileController@destroy')->name('deleteProfile');
 
+Route::get('/admin/user','UserController@index')->name('user');
+Route::get('/admin/editUser/{id}','UserController@edit')->name('editUser');
+Route::post('/admin/updateUser/{id}','UserController@update')->name('updateUser');
+Route::get('/admin/deleteUser/{id}','UserController@destroy')->name('deleteUser');
+
+
+Route::get('/admin/addTestimonial','TestimonialController@create')->name('addTestimonial');
+Route::post('/admin/saveTestimonial','TestimonialController@store')->name('saveTestimonial');
+Route::get('/admin/editTestimonial','TestimonialController@edit')->name('editTestimonial');
+Route::post('/admin/updateTestimonial','TestimonialController@update')->name('updateTestimonial');
+Route::get('/admin/deleteTestimonial','TestimonialController@destroy')->name('deleteTestimonial');
