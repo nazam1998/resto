@@ -62,12 +62,6 @@ Route::get('/admin/editRole/{id}','RoleController@edit')->name('editRole');
 Route::post('/admin/updateRole/{id}','RoleController@update')->name('updateRole');
 Route::get('/admin/deleteRole/{id}','RoleController@destroy')->name('deleteRole');
 
-Route::get('/admin/poste','PosteController@index')->name('poste');
-Route::get('/admin/addPoste','PosteController@create')->name('addPoste');
-Route::post('/admin/savePoste','PosteController@store')->name('savePoste');
-Route::get('/admin/editPoste/{id}','PosteController@edit')->name('editPoste');
-Route::post('/admin/updatePoste/{id}','PosteController@update')->name('updatePoste');
-Route::get('/admin/deletePoste/{id}','PosteController@destroy')->name('deletePoste');
 
 
 Route::get('/admin/profile','ProfileController@index')->name('profile');

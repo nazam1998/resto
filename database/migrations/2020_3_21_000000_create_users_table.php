@@ -26,11 +26,6 @@ class CreateUsersTable extends Migration
             
             $table->unsignedBigInteger('id_role');
             $table->foreign('id_role')->on('roles')->references('id')->onDelete('cascade')->onUpdate('cascade');
-
-
-            $table->unsignedBigInteger('id_poste')->nullable();
-            $table->foreign('id_poste')->on('postes')->references('id')->onDelete('cascade')->onUpdate('cascade');
-            
             
             $table->unsignedBigInteger('id_testimonial')->nullable();
             $table->foreign('id_testimonial')->on('testimonials')->references('id')->onDelete('cascade')->onUpdate('cascade');

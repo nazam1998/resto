@@ -52,9 +52,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('role') }}">Role</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('poste') }}">Poste</a>
-                        </li>
+                        
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('spec') }}">Spec</a>
                         </li>

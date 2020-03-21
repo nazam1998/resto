@@ -8,10 +8,7 @@
     <p>Prenom : {{$user->prenom}}</p>
     <p>Email : {{$user->email}}</p>
     <p>Role : {{$role->role}}</p>
-    @if (!is_null($poste))
-    <p>Poste : {{$poste->poste}}</p>
-    @endif
-    @if (!is_null($testimonial))
+    @if($user->id_role>3 && !is_null($testimonial))
     <p> Testimonial : {{$testimonial->testimonial}}</p>
     @endif
     <a href="{{route('editProfile')}}"><button class="btn btn-success">Editer</button></a>

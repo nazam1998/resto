@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use App\User;
 use App\Role;
-use App\Poste;
 use App\Testimonial;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -18,9 +17,8 @@ class ProfileController extends Controller
         }
         $user=User::find(Auth::id());
         $role=Role::all()->where('id',$user->id_role)->first();
-        $poste=Poste::all()->where('id',$user->id_poste)->first();
         $testimonial=Testimonial::all()->where('id',$user->id_testimonial)->first();
-        return view('admin.profile.index',compact('user','role','poste','testimonial'));
+        return view('admin.profile.index',compact('user','role','testimonial'));
     }
     public function edit(){
         if(!Auth::check()){
@@ -28,9 +26,8 @@ class ProfileController extends Controller
         }
         $user=User::find(Auth::id());
         $roles=Role::all();
-        $postes=Poste::all();
         $testimonials=Testimonial::all();
-        return view('admin.profile.edit',compact('user','roles','postes','testimonials'));
+        return view('admin.profile.edit',compact('user','roles','testimonials'));
         
     }
 
@@ -49,7 +46,6 @@ class ProfileController extends Controller
         $user->prenom=$request->prenom;
         $user->photo=$file;
         $user->password=$request->password;
-        // $user->id_testimonial=$request->id_testimonial;
         $user->save();
         return redirect()->route('profile');
 
