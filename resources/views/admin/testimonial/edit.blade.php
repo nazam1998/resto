@@ -8,13 +8,22 @@
         <h1>Edit du testimonial</h1>
 
             <div class="form-group">
-                <label for="testimonial">Testimonial</label>
-                @error('testimonial')
+                <label for="text">Testimonial</label>
+                @error('texte')
             <small class="text-danger">{{$message}}</small>
             @enderror
-                <input type="text" class="form-control" id="testimonial" name="testimonial" value="{{old('testimonial',$testimonial->testimonial)}}">
+                <input type="text" class="form-control" id="text" name="text" value="{{old('text',$test->texte)}}">
             </div>
-        <button type="submit" class="btn btn-success">Ajouter</button>
+            
+            <div class="form-group">
+                <label for="note">Note</label>
+                @error('note')
+            <small class="text-danger">{{$message}}</small>
+            @enderror
+                <input type="number" min='1' max='5' class="form-control" id="note" name="note" value="{{old('note',$test->note)}}">
+            </div>
+            
+        <button type="submit" class="btn btn-success">Editer</button>
     </form>
     @else
     <h1 class="text-danger">Désolé, vous n'avez pas l'autorisation d'accéder à cette page

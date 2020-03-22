@@ -9,7 +9,7 @@
 
             <div class="form-group">
                 <label for="text">Testimonial</label>
-                @error('text')
+                @error('texte')
             <small class="text-danger">{{$message}}</small>
             @enderror
                 <input type="text" class="form-control" id="text" name="text" value="{{old('text')}}">
